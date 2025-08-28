@@ -10,5 +10,5 @@ import org.junit.runner.RunWith;
         glue = "co.com.template.automation.stepdefinitions",
         plugin = {"pretty"}
 )
-public class FakeStoreTestSuite {
+public class RunnerTestSuite {
 }

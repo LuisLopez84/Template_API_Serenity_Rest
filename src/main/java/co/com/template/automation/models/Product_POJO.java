@@ -1,6 +1,6 @@
 package co.com.template.automation.models;
 
-public class Product {
+public class Product_POJO {
     private String title;
     private double price;
     private String description;

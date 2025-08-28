@@ -1,2 +1,5 @@
-co\com\template\automation\runners\FakeStoreTestSuite.class
+co\com\template\automation\stepdefinitions\CommonSteps.class
+co\com\template\automation\utils\TestContext.class
 co\com\template\automation\stepdefinitions\FakeStoreStepDefinitions.class
+co\com\template\automation\runners\RunnerTestSuite.class
+co\com\template\automation\stepdefinitions\SchemaSteps.class

@@ -1,11 +1,8 @@
 package co.com.template.automation.stepdefinitions;
 
-import co.com.template.automation.models.Product;
-import io.cucumber.java.en.Then;
+import co.com.template.automation.models.Product_POJO;
 import io.cucumber.java.en.When;
 import net.serenitybdd.rest.SerenityRest;
-
-import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class FakeStoreStepDefinitions {
 
@@ -16,9 +13,16 @@ public class FakeStoreStepDefinitions {
                 .get("/products");
     }
 
+    @When("consulto el producto con id {int}")
+    public void consulto_producto_por_id(int id) {
+        SerenityRest.given()
+                .baseUri("https://fakestoreapi.com")
+                .get("/products/" + id);
+    }
+
     @When("creo un producto con título {string} y precio {double}")
     public void creo_un_producto(String title, Double price) {
-        Product product = new Product();
+        Product_POJO product = new Product_POJO();
         product.setTitle(title);
         product.setPrice(price);
         product.setDescription("Producto creado desde Serenity");
@@ -34,7 +38,7 @@ public class FakeStoreStepDefinitions {
 
     @When("actualizo el producto con id {int} y nuevo título {string}")
     public void actualizo_producto(int id, String newTitle) {
-        Product product = new Product();
+        Product_POJO product = new Product_POJO();
         product.setTitle(newTitle);
         product.setPrice(30.0);
         product.setDescription("Producto actualizado desde Serenity");
@@ -53,12 +57,5 @@ public class FakeStoreStepDefinitions {
         SerenityRest.given()
                 .baseUri("https://fakestoreapi.com")
                 .delete("/products/" + id);
-    }
-
-    @Then("la respuesta debe tener status {int}")
-    public void la_respuesta_debe_tener_status(Integer status) {
-        SerenityRest.lastResponse()
-                .then()
-                .statusCode(status);
     }
 }

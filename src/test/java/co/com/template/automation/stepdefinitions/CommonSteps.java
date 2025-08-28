@@ -1,30 +1,23 @@
 package co.com.template.automation.stepdefinitions;
 
+import co.com.template.automation.utils.TestContext;
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import net.serenitybdd.rest.SerenityRest;
-
-import static org.hamcrest.Matchers.equalTo;
 
 public class CommonSteps {
 
-    private String baseUrl = "https://fakestoreapi.com";
-    private String endpoint;
-
     @Given("el endpoint {string}")
     public void setEndpoint(String endpoint) {
-        this.endpoint = endpoint;
+        TestContext.setEndpoint(endpoint);
     }
 
     @When("realizo una petición GET")
     public void sendGetRequest() {
         SerenityRest.given()
-                .baseUri(baseUrl)
-                .when()
-                .get(endpoint)
-                .then()
-                .log().all(); // opcional para debug
+                .baseUri("https://fakestoreapi.com")
+                .get(TestContext.getEndpoint());
     }
 
     @Then("la respuesta debe tener código de estado {int}")
