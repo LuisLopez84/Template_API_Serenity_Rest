@@ -33,3 +33,8 @@ jobs:
         with:
           name: serenity-report
           path: target/site/serenity
+
+
+          # NOTA: Este proyecto de automatización corre OK de forma local desde el IDE ejecutandolo desde el runner
+          # o desde los comandos mvn clean verify pero NO CORRE DESDE EL PIPELINE ya que fakestoreapi.com bloquea
+          # peticiones desde runners de CI/CD (GitHub Actions, GitLab, Azure Pipelines, etc.) por temas de CORS, limitación de tráfico o firewall.
